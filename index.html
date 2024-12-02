@@ -6,6 +6,7 @@
 </head>
 <body>
   
+  
   <header>
     <nav>
       <ul>
@@ -15,10 +16,16 @@
         <li><a href="#">잡화</a></li>
       </ul>
     </nav>
+    
+    
   </header>
+  
+  
   
   <h1>피크민</h1>
   <h2>피크닉 유목민들 모여라!</h2>
+  
+  
   
   <!-- 질문 1 -->
   <div id="question1" class="question">
@@ -40,11 +47,7 @@
       <button onclick="selectOption(2, '친구')">친구</button>
       <button onclick="selectOption(2, '동물')">동물</button>
     </div>
-  <!-- 뒤로 가기 버튼 추가 -->
-  <button onclick="goBack(2)">뒤로 가기</button>
-  <button onclick="goHome()">홈 화면으로</button>
-</div>
- 
+  </div>
 
   <!-- 질문 3 -->
   <div id="question3" class="question" style="display:none;">
@@ -52,8 +55,6 @@
     <input type="color" id="colorPicker" onchange="updateColor()" value="#ADD8E6">
     <p>현재 선택된 색상: <span id="selectedColor">#000000</span></p>
     <button onclick="selectOption(3, document.getElementById('colorPicker').value)">확인</button>
-      <button onclick="goBack(3)">뒤로 가기</button>
-  <button onclick="goHome()">홈 화면으로</button>
   </div>
 
   <!-- 결과 -->
@@ -74,28 +75,9 @@
       </select>
       <button onclick="placeOrder()">주문하기</button>
     </div>
-      <button onclick="goHome()">홈 화면으로</button>
   </div>
 
   <script>
-    // 현재 질문 번호를 추적
-  let currentQuestion = 1;
-
-  function goBack(question) {
-    document.getElementById(`question${question}`).style.display = 'none';
-    document.getElementById(`question${question - 1}`).style.display = 'block';
-    currentQuestion = question - 1;
-  }
-
-  function goHome() {
-    // 모든 질문과 결과를 숨기고 첫 화면만 보이도록 설정
-    document.querySelectorAll('.question, #result').forEach(section => {
-      section.style.display = 'none';
-    });
-    document.getElementById('question1').style.display = 'block';
-    currentQuestion = 1;
-  }
-
     
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
