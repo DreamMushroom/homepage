@@ -16,64 +16,62 @@
     </nav>
     
 
-</header>
+  </header>
   
   
   
   <h1>피크민</h1>
   <h2>피크닉 유목민들 모여라!</h2>
   
-  
-  
   <!-- 질문 1 -->
-<div id="question1" class="question">
-  <label>1. 피크닉을 어디로 가나요?</label>
-  <div class="options">
-  <button onclick="selectOption(1, '한강')">한강</button>
-  <button onclick="selectOption(1, '공원')">공원</button>
-  <button onclick="selectOption(1, '계곡')">계곡</button>
-  <button onclick="selectOption(1, '바다')">바다</button>
+  <div id="question1" class="question">
+    <label>1. 피크닉을 어디로 가나요?</label>
+    <div class="options">
+      <button onclick="selectOption(1, '한강')">한강</button>
+      <button onclick="selectOption(1, '공원')">공원</button>
+      <button onclick="selectOption(1, '계곡')">계곡</button>
+      <button onclick="selectOption(1, '바다')">바다</button>
+    </div>
   </div>
-</div>
 
-<!-- 질문 2 -->
-<div id="question2" class="question" style="display:none;">
-  <label>2. 누구랑 함께 가나요?</label>
-  <div class="options">
-  <button onclick="selectOption(2, '연인')">연인</button>
-  <button onclick="selectOption(2, '가족')">가족</button>
-  <button onclick="selectOption(2, '친구')">친구</button>
-  <button onclick="selectOption(2, '동물')">동물</button>
+  <!-- 질문 2 -->
+  <div id="question2" class="question" style="display:none;">
+    <label>2. 누구랑 함께 가나요?</label>
+    <div class="options">
+      <button onclick="selectOption(2, '연인')">연인</button>
+      <button onclick="selectOption(2, '가족')">가족</button>
+      <button onclick="selectOption(2, '친구')">친구</button>
+      <button onclick="selectOption(2, '동물')">동물</button>
+    </div>
   </div>
-</div>
 
   <!-- 질문 3 -->
-<div id="question3" class="question" style="display:none;">
-  <label>3. 원하는 돗자리 색상을 선택해주세요:</label>
-  <input type="color" id="colorPicker" onchange="updateColor()" value="#ADD8E6">
-  <p>현재 선택된 색상: <span id="selectedColor">#000000</span></p>
-  <button onclick="selectOption(3, document.getElementById('colorPicker').value)">확인</button>
-</div>
+  <div id="question3" class="question" style="display:none;">
+    <label>3. 원하는 돗자리 색상을 선택해주세요:</label>
+    <input type="color" id="colorPicker" onchange="updateColor()" value="#ADD8E6">
+      <p>현재 선택된 색상: <span id="selectedColor">#000000</span></p>
+      <button onclick="selectOption(3, document.getElementById('colorPicker').value)">확인</button>
+  </div>
 
   <!-- 결과 -->
-<div id="result">
-  <p>당신의 돗자리가 완성되었습니다!</p>
-  <canvas id="myCanvas" width="600" height="600"></canvas>
-  <p id="picnicText"></p>
-  <div id="orderDetails">
-  <label for="address">배송지 입력:</label>
-  <input type="text" id="address" placeholder="주소를 입력하세요">
-  <label for="quantity">수량:</label>
-  <select id="quantity">
-    <option value="1">1개</option>
-    <option value="2">2개</option>
-    <option value="3">3개</option>
-    <option value="4">4개</option>
-    <option value="5">5개</option>
-  </select>
-  <button onclick="placeOrder()">주문하기</button>
+  <div id="result">
+    <p>당신의 돗자리가 완성되었습니다!</p>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <p id="picnicText"></p>
+    <div id="orderDetails">
+      <label for="address">배송지 입력:</label>
+      <input type="text" id="address" placeholder="주소를 입력하세요">
+      <label for="quantity">수량:</label>
+      <select id="quantity">
+        <option value="1">1개</option>
+        <option value="2">2개</option>
+        <option value="3">3개</option>
+        <option value="4">4개</option>
+        <option value="5">5개</option>
+      </select>
+      <button onclick="placeOrder()">주문하기</button>
+    </div>
   </div>
-</div>
 
 <script>
     
