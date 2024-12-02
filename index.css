@@ -1,0 +1,97 @@
+@charset "utf-8";
+    .body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin_top: 80px;
+      padding: 0;
+    }
+    .header {
+      background-color: #0078d4;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .nav ul li {
+      margin: 0 15px;
+    }
+    .nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 15px 0;
+      display: block;
+    }
+    .nav ul li a:hover {
+      color: #ffd700;
+      transition: color 0.3s;
+    }
+    .h1 {
+      color: #0078d4;
+      margin-top: 80px; /* 헤더 높이 고려 */
+    }
+    .h2 {
+      color: #555;
+    }
+    
+    .h1 {
+      color: #0078d4;
+      margin-top: 20px;
+    }
+    .h2 {
+      color: #555;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background-color: #0056a1;
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+    }
+    .result canvas {
+      margin: 20px auto;
+      display: block;
+      border: 1px solid #ccc;
+    }
+    .result p {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .orderDetails {
+      margin-top: 20px;
+    }
+    .orderDetails input, #orderDetails select, #orderDetails button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      display: block;
+      margin: 10px auto;
+     }
