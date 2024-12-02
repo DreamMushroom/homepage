@@ -67,24 +67,24 @@
 .options button:hover {
       background-color: #0056a1;
     }
-#result {
+.result {
       display: none;
       margin-top: 20px;
     }
-#result canvas {
+.result canvas {
       margin: 20px auto;
       display: block;
       border: 1px solid #ccc;
     }
-#result p {
+.result p {
       font-size: 20px;
       font-weight: bold;
       margin: 10px 0;
     }
-#orderDetails {
+.orderDetails {
       margin-top: 20px;
     }
-#orderDetails input, #orderDetails select, #orderDetails button {
+.orderDetails input, .orderDetails select, .orderDetails button {
       padding: 10px;
       font-size: 16px;
       margin: 10px;
