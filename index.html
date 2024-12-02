@@ -103,20 +103,27 @@ const waveColorMapping = {
   "동물": "#9370DB"  // 보라색
 };
 function selectOption(question, value) {
-  if (question === 1) {
-    picnicData.location = value;
-
-    // 2번 질문 텍스트에 1번에서 선택한 내용을 포함
-    const question2Label = document.querySelector('#question2 label');
-    question2Label.innerHTML = `"${value}" 누구랑 함께 가나요?`;
-
-    if (value === '한강') {
-      picnicData.color = '#000000'; // 한강을 선택하면 기본 색상을 검은색으로 설정
-      document.getElementById('colorPicker').value = '#000000'; // 색상 선택기도 검은색으로 변경
-    }
-    document.getElementById('question1').style.display = 'none';
-    document.getElementById('question2').style.display = 'block';
-  } else if (question === 2) {
+    if (question === 1) {
+      picnicData.location = value;
+      if (value === '한강') {
+        picnicData.color = '#000000'; // 한강을 선택하면 기본 색상을 검은색으로 설정
+        document.getElementById('colorPicker').value = '#000000'; // 색상 선택기도 검은색으로 변경
+        updateColor();
+      }
+      else if (value === '바다') {
+        picnicData.color = '#0080FF'; // 바다를 선택하면 기본 색상을 파란색으로 설정
+        document.getElementById('colorPicker').value = '#0080FF'; // 색상 선택기도 파란색으로 변경
+        updateColor();
+      }
+      else {
+        picnicData.color = '#ADD8E6'; // 공원과 계곡은 기본값으로
+        document.getElementById('colorPicker').value = '#ADD8E6'; // 색상 선택기도 기본값으로 변경
+        updateColor();
+      }
+      
+      document.getElementById('question1').style.display = 'none';
+      document.getElementById('question2').style.display = 'block';} 
+    else if (question === 2) {
     picnicData.companion = value;
     document.getElementById('question2').style.display = 'none';
     document.getElementById('question3').style.display = 'block';
