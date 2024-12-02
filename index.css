@@ -46,10 +46,10 @@ body {
    h2 {
       color: #555;
     }
-   question {
+   .question {
       margin: 20px 0;
     }
-   question label {
+   .question label {
       font-size: 28px; 
       font-weight: bold;
     }
