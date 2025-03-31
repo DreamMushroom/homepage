@@ -1,4 +1,16 @@
 
+@font-face {
+    font-family: 'Eulyoo1945';
+    src: url('/fonts/Eulyoo1945-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Eulyoo1945';
+    src: url('/fonts/Eulyoo1945-SemiBold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
 header {
       background-color: #f8e471;
       position: fixed;
@@ -26,67 +38,21 @@ header {
       display: block;
     }
    nav ul li a:hover {
-      color: #ffd700;
+      color: tran;
       transition: color 0.3s;
     }
    
     
 body {
-      font-family: Arial, sans-serif;
+      font-family: Eulyoo1945;
       text-align: center;
-      background-color: #f8c5d0;
-      margin: 0;
-      padding: 0;
+      background-image: url('/img/2.png');
+	  background-repeat: no-repeat;
     }
    h1 {
       color: #FFFFFF;
       margin-top: 190px;
     }
    h2 {
-      color: #555;
-    }
-.question {
-      margin: 20px 0;
-    }
-.question label {
-      font-size: 28px; 
-      font-weight: bold;
-    }
-.options button {
-      margin: 5px;
-      padding: 10px 20px;
-      font-size: 26px;
-      background-color: #a8e6cf;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-       margin-top: 30px;
-    }
-.options button:hover {
-      background-color: #0056a1;
-    }
-#result {
-      display: none;
-      margin-top: 20px;
-    }
-#result canvas {
-      margin: 20px auto;
-      display: block;
-      border: 1px solid #ccc;
-    }
-#result p {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-#orderDetails {
-      margin-top: 20px;
-    }
-#orderDetails input, #orderDetails select, #orderDetails button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px;
-      display: block;
-      margin: 10px auto;
+      color: #FFFFFF;
     }
