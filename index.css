@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 
 header {
       background-color: #f8e471;
+=======
+@charset "utf-8";
+    .body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin_top: 80px;
+      padding: 0;
+    }
+    .header {
+      background-color: #0078d4;
+>>>>>>> parent of f073cdc (Update index.css)
       position: fixed;
       top: 0;
       width: 100%;
