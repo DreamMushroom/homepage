@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'Eulyoo1945';
-    src: url('./fonts/Eulyoo1945-Regular.otf') format('opentype');
+    src: url('/fonts/Eulyoo1945-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
@@ -12,7 +12,7 @@
     font-style: normal;
 }
 header {
-      background-color: transparent;
+      background-color: #f8e471;
       position: fixed;
       top: 0;
       width: 100%;
@@ -46,7 +46,7 @@ header {
 body {
       font-family: Eulyoo1945;
       text-align: center;
-      background-image: url('./img/2.jpg');
+      background-image: url('/img/2.png');
 	  background-repeat: no-repeat;
     }
    h1 {
