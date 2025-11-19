@@ -26,6 +26,293 @@
   
  
 <script>
+<<<<<<< HEAD
+=======
+    
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+    
+const picnicData = {
+  location: '',
+  companion: '',
+  color: '#ADD8E6' // 기본 색상
+};
+  
+   
+   
+const flowerColorMapping = {
+  "연인": "#FFB6C1", // 핑크색
+  "가족": "#FFD700", // 금색
+  "친구": "#7FFFD4", // 아쿠아
+  "동물": "#9370DB"  // 보라색
+};  
+
+// 물결 색상 정의
+const waveColorMapping = {
+  "연인": "#FFB6C1", // 핑크색
+  "가족": "#FFD700", // 금색
+  "친구": "#7FFFD4", // 아쿠아
+  "동물": "#9370DB"  // 보라색
+};
+function selectOption(question, value) {
+  if (question === 1) {
+    picnicData.location = value;
+
+    // 2번 질문 텍스트에 1번에서 선택한 내용을 포함
+    const question2Label = document.querySelector('#question2 label');
+    question2Label.innerHTML = `"${value}" 누구랑 함께 가나요?`;
+
+    if (value === '한강') {
+      picnicData.color = '#000000'; // 한강을 선택하면 기본 색상을 검은색으로 설정
+      document.getElementById('colorPicker').value = '#000000'; // 색상 선택기도 검은색으로 변경
+    }
+    document.getElementById('question1').style.display = 'none';
+    document.getElementById('question2').style.display = 'block';
+  } else if (question === 2) {
+    picnicData.companion = value;
+    document.getElementById('question2').style.display = 'none';
+    document.getElementById('question3').style.display = 'block';
+  } else if (question === 3) {
+    picnicData.color = value;
+    document.getElementById('question3').style.display = 'none';
+    displayResult();
+  }
+}
+
+
+  function updateColor() {
+    const color = document.getElementById('colorPicker').value;
+    document.getElementById('selectedColor').textContent = color;
+  }
+
+  function displayResult() {
+    const { location, companion, color } = picnicData;
+    const picnicText = document.getElementById('picnicText');
+
+    // 결과 텍스트
+    picnicText.textContent = `${location}에서 ${companion}과 함께하는 단 하나뿐인 돗자리!`;
+
+    drawCanvas(location, companion, color); // 돗자리 캔버스 생성
+    document.getElementById('result').style.display = 'block';
+  }
+
+     function drawCanvas(location, companion, color) {
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+
+  if (location === '한강') {
+    // 한강에 맞는 랜덤 색상 패턴
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 동행자에 따라 사용할 색상 계열 정의
+    const randomColorPalette = {
+      "연인": ["#FFC0CB", "#FF69B4", "#FFB6C1", "#FF1493"],
+      "가족": ["#FFD700", "#FFA500", "#FFFF00", "#FFE4B5"],
+      "친구": ["#7FFFD4", "#40E0D0", "#48D1CC", "#20B2AA"],
+      "동물": ["#9370DB", "#8A2BE2", "#BA55D3", "#9400D3"]
+    };
+
+    const colors = randomColorPalette[companion] || ["#FFFFFF"];
+    const gridSize = 20; // 그리드 크기
+    const dotRadius = 5; // 점의 반지름
+
+    // 캔버스에 랜덤 색상으로 패턴 생성
+    for (let y = 0; y < canvas.height; y += gridSize) {
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        if (Math.random() > 0.3) {
+          ctx.beginPath();
+          ctx.arc(
+            x + gridSize / 2,
+            y + gridSize / 2,
+            dotRadius,
+            0,
+            Math.PI * 2
+          );
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          ctx.fillStyle = randomColor;
+          ctx.fill();
+        }
+      }
+    }
+  }else if (location === '계곡') {
+      // 계곡에 맞는 물결 패턴 디자인
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = color; // 배경색을 사용자 지정 색상으로 설정
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const waveHeight = 10;
+      const waveLength = 50;
+      const lineWidth = 3;
+      const spacing = 40;
+      const waveColor = waveColorMapping[companion] || "#FFFFFF"; // 동행자에 따른 물결 색상
+      const circleColors = ["#FFFACD", "#98FB98", "#ADFF2F", "#7FFF00", "#87CEFA"];
+
+      for (let i = 0; i < canvas.height / spacing; i++) {
+        const rowY = i * spacing;
+        ctx.beginPath();
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = waveColor;
+        for (let x = 0; x <= canvas.width; x++) {
+          const y = rowY + Math.sin((x / waveLength) * Math.PI * 2) * waveHeight;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      
+      const circleRows = Math.floor(canvas.height / spacing); // 원 행 개수
+      const circleCols = Math.floor(canvas.width / spacing);  // 원 열 개수
+      const circleStartX = (canvas.width - circleCols * spacing) / 2; // 원 중앙 정렬 X 시작점
+      const circleStartY = (canvas.height - circleRows * spacing) / 2; // 원 중앙 정렬 Y 시작점
+
+      for (let row = 0; row < circleRows; row++) {
+        for (let col = 0; col < circleCols; col++) {
+          const colorIndex = (row + col) % circleColors.length; // 색상 순환
+          const x = circleStartX + col * spacing + spacing / 2; // 원 중심 X 좌표
+          const y = circleStartY + row * spacing + spacing / 2; // 원 중심 Y 좌표
+
+          // 원1: 작은 원
+          const radius1 = 5 + (row + col) % 2; // 크기 다양화
+          ctx.beginPath();
+          ctx.fillStyle = circleColors[colorIndex];
+          ctx.arc(x - 10, y, radius1, 0, Math.PI * 1.2); // 원 그리기
+          ctx.fill();
+
+          // 원2: 큰 원
+          const radius2 = 3 + (row * col) % 1; // 크기 다양화
+          ctx.beginPath();
+          ctx.fillStyle = circleColors[(colorIndex + 1) % circleColors.length]; // 다른 색상
+          ctx.arc(x + 10, y, radius2, 0, Math.PI * 2); // 원 그리기
+          ctx.fill();
+        }
+      }
+    } else if (location === '공원') {
+  // 공원의 경우 배경과 꽃, 풀 패턴 그리기
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스를 지웁니다.
+  ctx.fillStyle = color; // 배경색을 사용자 지정 색상으로 설정
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // 배경을 칠합니다.
+
+  // 꽃 그리기 함수
+  function drawFlower(x, y, size) { 
+    const flowerColor = flowerColorMapping[companion] || "#FFFFFF"; 
+    ctx.fillStyle = flowerColor;
+    ctx.beginPath();
+    ctx.arc(x - size / 2, y, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x + size / 2, y, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x, y - size / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x, y + size / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "lightyellow";
+    ctx.beginPath();
+    ctx.arc(x, y, size / 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // 풀 그리기 함수
+  function drawGrass(x, y, maxHeight) {
+    ctx.fillStyle = "darkgreen";
+    var randomHeight = Math.random() * maxHeight + 10;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 3, y - randomHeight);
+    ctx.lineTo(x + 3, y);
+    ctx.fill();
+  }
+
+  // 그리드 크기
+  var gridSize = 80;
+
+  // 캔버스 위에 꽃과 풀을 그리는 반복문
+  for (var i = 0; i < canvas.width; i += gridSize) {
+    for (var j = 0; j < canvas.height; j += gridSize) {
+      // 꽃을 그립니다.
+      drawFlower(i + gridSize / 2, j + gridSize / 2, 30);
+      var flowerColor = flowerColorMapping[companion] || "pink";
+
+      // 풀을 그립니다.
+      var grassX = i + Math.random() * gridSize;
+      var grassY = j + Math.random() * gridSize;
+      drawGrass(grassX, grassY, 30);
+    }
+  }
+}
+     else if (location === '바다') {
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스를 지웁니다.
+  ctx.fillStyle = color; // 배경색을 사용자 지정 색상으로 설정
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // 배경을 칠합니다.
+  const waveColor = waveColorMapping[companion] || "#FFFFFF";
+
+  // 물결 그리기 함수
+  function drawwave() { 
+    for (let y = 0; y< canvas.height; y+= Math.floor(Math.random()*30)+100) {  
+         sx = -10;
+         px = Math.random()*100;
+         ctx.strokeStyle = waveColor; 
+         ctx.lineWidth = 50;
+         ctx.beginPath();
+         ctx.quadraticCurveTo(sx,y,sx,y);
+         ctx.quadraticCurveTo(sx+60,y-50,sx+110,y);
+         ctx.quadraticCurveTo(sx+160,y-50,sx+210,y);
+         ctx.quadraticCurveTo(sx+260,y-50,sx+310,y);
+         ctx.quadraticCurveTo(sx+360,y-50,sx+410,y);
+         ctx.quadraticCurveTo(sx+460,y-50,sx+510,y);
+         ctx.quadraticCurveTo(sx+560,y-50,sx+610,y);
+         ctx.quadraticCurveTo(sx+660,y-50,sx+720,y);
+         ctx.quadraticCurveTo(sx+760,y-50,sx+820,y);
+         ctx.stroke();
+    }
+  }
+  // 물거품 그리기 함수
+   function bubble() {
+      for (let i = 0; i <70; i++) {
+        x = Math.floor(Math.random() * canvas.width)
+        y = Math.floor(Math.random() * canvas.width)
+        ctx.globalAlpha=0.5;
+        ctx.beginPath();
+        ctx.fillStyle=getRandomColor();        
+        ctx.arc(x,y,Math.floor(Math.random() * 60),0,Math.PI*2);      
+        ctx.fill();}
+   }
+   function getRandomColor() {
+       var r,g,b,color;
+         r=Math.floor(Math.random() * 255)-120;
+       g=Math.floor(Math.random() * 255)+150;
+       b=Math.floor(Math.random() * 255)+150;
+       color ="rgb("+r+","+g+","+b+")";        
+         return color;
+   }
+        drawwave();
+        bubble();
+        
+  }
+}
+
+
+  function placeOrder() {
+    const address = document.getElementById('address').value;
+    const quantity = document.getElementById('quantity').value;
+
+    if (!address) {
+      alert("배송지를 입력해주세요!");
+      return;
+    }
+
+    alert(`주문이 완료되었습니다! 2~3일 내로 출고될 예정입니다! :) \n배송지: ${address}\n수량: ${quantity}개`);
+  }
+>>>>>>> parent of d76b36d (Update index.html)
 </script>
 </body>
 </html>
